@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0b0d"><title>Models — Richard Zhou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter+Tight:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head><body data-page="models">
+<div class="loader"><div class="loader-inner"><div class="loader-meta"><span>Initializing research environment</span><span>RZ / 2026</span></div><div class="loader-track"><span></span></div></div></div>
+<div class="noise"></div><header class="site-header" data-site-header></header>
+
+<main>
+<section class="page-hero">
+  <div class="kicker"><b>M / 01</b>Valuation models</div>
+  <div class="page-hero-grid"><h1>Make the<br><span class="accent">price talk.</span></h1><p class="page-hero-copy">These are compact thinking tools, not target-price machines. Their purpose is to expose assumptions, return requirements and sensitivity.</p></div>
+</section>
+<section class="section" id="reverse">
+  <div class="kicker reveal"><b>01</b>Reverse expectations / equity</div><h2 class="display reveal">What must<br>be <span class="accent">true?</span></h2>
+  <div class="model-shell reveal">
+    <div class="model-controls"><h3 class="model-title">Owner-earnings model</h3><p class="model-intro">A deliberately transparent 10-year model. Change price, normalized owner earnings, growth, terminal multiple and required return.</p>
+      <div class="control"><div class="control-head"><label>Current price</label><output id="out-price">$200</output></div><input id="m-price" type="range" min="50" max="500" step="5" value="200"></div>
+      <div class="control"><div class="control-head"><label>Owner earnings / share</label><output id="out-oe">$12.0</output></div><input id="m-oe" type="range" min="2" max="30" step=".5" value="12"></div>
+      <div class="control"><div class="control-head"><label>10Y earnings growth</label><output id="out-growth">8.0%</output></div><input id="m-growth" type="range" min="-5" max="20" step=".5" value="8"></div>
+      <div class="control"><div class="control-head"><label>Exit owner-earnings multiple</label><output id="out-exit">18×</output></div><input id="m-exit" type="range" min="8" max="30" step="1" value="18"></div>
+      <div class="control"><div class="control-head"><label>Required return</label><output id="out-hurdle">15.0%</output></div><input id="m-hurdle" type="range" min="6" max="20" step=".5" value="15"></div>
+      <p class="model-note">Replace demo assumptions with sourced figures before using the output in published research.</p>
+    </div>
+    <div class="model-output"><div><div class="model-kicker">Illustrative intrinsic value / share</div><div class="model-big"><small>$</small><span id="iv">0</span></div></div>
+      <div class="model-stats"><div class="model-stat"><span>Terminal IRR proxy</span><strong id="irr">0%</strong></div><div class="model-stat"><span>Margin vs price</span><strong id="mos">0%</strong></div><div class="model-stat"><span>PV operating earnings</span><strong id="pv-earnings">$0</strong></div><div class="model-stat"><span>PV terminal value</span><strong id="pv-terminal">$0</strong></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="bond">
+  <div class="kicker reveal"><b>02</b>Bond laboratory</div><h2 class="display reveal">Price the<br>cash flows.</h2>
+  <div class="model-shell reveal">
+    <div class="model-controls"><h3 class="model-title">Bond mispricing lens</h3><p class="model-intro">Estimate YTM, fair price, modified duration and DV01 from a simple annual-coupon bond.</p>
+      <div class="control"><div class="control-head"><label>Market price</label><output id="out-bprice">$92.0</output></div><input id="b-price" type="range" min="60" max="120" step=".5" value="92"></div>
+      <div class="control"><div class="control-head"><label>Coupon</label><output id="out-coupon">4.0%</output></div><input id="b-coupon" type="range" min="0" max="12" step=".25" value="4"></div>
+      <div class="control"><div class="control-head"><label>Maturity</label><output id="out-maturity">10Y</output></div><input id="b-maturity" type="range" min="1" max="30" step="1" value="10"></div>
+      <div class="control"><div class="control-head"><label>Your fair yield</label><output id="out-fairyield">4.50%</output></div><input id="b-fairyield" type="range" min="1" max="15" step=".25" value="4.5"></div>
+      <p class="model-note">Simplified annual-coupon math. Credit, optionality, taxes, liquidity and recovery belong in a real security-specific model.</p>
+    </div>
+    <div class="model-output"><div><div class="model-kicker">Market yield to maturity</div><div class="model-big"><span id="ytm">0%</span></div></div>
+      <div class="model-stats"><div class="model-stat"><span>Fair price @ your yield</span><strong id="fair-price">$0</strong></div><div class="model-stat"><span>Modified duration</span><strong id="duration">0</strong></div><div class="model-stat"><span>DV01 / $100 par</span><strong id="dv01">$0</strong></div><div class="model-stat"><span>Question</span><strong style="font-size:18px">Why the spread?</strong></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-site-footer></footer>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"></script>
+<script src="assets/content.js"></script><script src="assets/site.js"></script>
+</body></html>
