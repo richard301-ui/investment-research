@@ -1,10 +1,11 @@
-# RZ Investment Site v3
+# RZ Investment Site v4.1
 
 This version preserves the original dark / lime / cinematic design and moves detailed research into subpages.
 
 ## Pages
 - `index.html` — personal homepage, research universe, selected investigations
 - `equities.html` — equity cases and equity research method
+- `report.html?ticker=ADBE` — reusable ticker-analysis template; every equity row links here
 - `bonds.html` — bond / credit / capital-structure research
 - `research.html` — filterable research archive
 - `models.html` — interactive equity and bond valuation tools
@@ -15,6 +16,10 @@ This version preserves the original dark / lime / cinematic design and moves det
 
 Most changing investment content lives in:
 `assets/content.js`
+
+The equity table is driven by `RZ_DATA.equityCases`; the full ticker reports
+are driven by `RZ_DATA.reports`. Add or revise report content there without
+changing the report layout.
 
 To replace a security or thesis later, edit the data objects in `content.js`.
 You should not need to touch:
@@ -27,8 +32,9 @@ This lets future ChatGPT sessions update your research without redesigning the w
 
 ## Before deployment
 1. Replace `hello@example.com` in `assets/content.js`.
-2. Replace demo model inputs with sourced figures before publishing any investment conclusion.
-3. Static deployment works on Netlify, Vercel, Cloudflare Pages or GitHub Pages.
+2. Refresh dated market-price snapshots and reported facts before publishing.
+3. Load security-specific model assumptions before publishing an intrinsic-value conclusion.
+4. Static deployment works on Netlify, Vercel, Cloudflare Pages or GitHub Pages.
 
 ## Dependencies
 Loaded from public CDNs:
@@ -40,26 +46,18 @@ Loaded from public CDNs:
 No build step is required.
 
 
-## Dummy data and future replacement
+## Research data and future replacement
 
-`assets/content.js` now contains deliberately labeled **dummy / demonstration data**.
+`assets/content.js` contains the current research universe, dated market
+snapshots, reported operating facts, thesis questions, source URLs and
+falsifiers. Reported facts and research judgments are deliberately separated.
 
-The code includes `RESERVED FOR FUTURE` and `TODO` descriptions for:
-- real equity metrics
-- bond-level data
-- intrinsic-value ranges
-- reverse-DCF assumptions
-- expected IRR
-- capital-structure scenarios
-- research timestamps
-- filing / source references
-- future live market data
-- valuation history
-- thesis history
+The site does not publish invented fair values, owner earnings, ROIC or IRRs.
+Those fields should be added only after the underlying bridge and assumptions
+are sourced. The models page remains an assumption laboratory, not a live feed.
 
-The dummy numbers are not intended to represent current market data or investment recommendations.
-
-For future updates, edit `assets/content.js` only unless the design itself needs to change.
+For future research updates, edit `assets/content.js` only unless the design
+itself needs to change.
 
 
 ## v3.1 bug fixes
@@ -73,10 +71,34 @@ For future updates, edit `assets/content.js` only unless the design itself needs
   corresponding WebGL node. Labels are clickable/tappable and update the
   thesis panel directly.
 
-- The homepage research universe is seeded with:
-  KVUE, GOOGL, MELI, MOH, SQFTP, HRB, MO, BRK.B, ADBE, DKNY, FLUT.
+- The homepage research universe contains:
+  ADBE, LULU, GOOGL, MELI, UST20Y, INTU, XLE, GOLD, HRB, IT, ALGN, MBGAF.
 
-- All valuation figures remain dummy demonstration data.
+- Each object includes a dated evidence line and a direct source link.
+
+
+## v4 — Project Investing research extraction
+
+- Replaced the placeholder watchlist with the selected Project Investing universe.
+- Removed all securities outside the requested research set.
+- Replaced unsupported valuation figures with sourced reported facts.
+- Added current thesis framing for Adobe, lululemon, Alphabet, MercadoLibre,
+  Intuit, XLE, gold, H&R Block, Gartner, Align and Mercedes-Benz.
+- Reframed the 20-year Treasury as a curve/duration thesis rather than a
+  mechanical policy-rate bet.
+- Added visible evidence timestamps and source links to the 3D detail card.
+- Standardized Mercedes-Benz's U.S. OTC symbol to MBGAF.
+
+
+## v4.1 — Clickable analysis reports
+
+- Every row in the equity research table is clickable and keyboard accessible.
+- Each ticker opens a dedicated analysis route such as
+  `report.html?ticker=ADBE` or `report.html?ticker=LULU`.
+- One reusable report template renders ticker-specific thesis, evidence,
+  underwriting questions, catalysts, risks, falsifier and valuation status.
+- Previous / next navigation connects all ten reports.
+- Report content remains separate from layout in `assets/content.js`.
 
 
 ## v3.2 orbit interaction fix
